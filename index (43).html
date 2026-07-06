@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Horizon — Community Cleanups, Climate Action</title>
+<meta name="description" content="A youth-led group cleaning up our neighborhood and raising funds for climate action.">
+
+<!-- ============================================================
+     EDIT ME FIRST: search for [EDIT] comments throughout this file
+     to swap in your real group name, city, links, and photos.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:      #16241C;   /* deep foliage-shadow, near-black */
+    --paper:    #EFEAD9;   /* warm oat paper */
+    --moss:     #2F5138;   /* primary green */
+    --moss-dim: #3F6A4B;
+    --safety:   #D9B23C;   /* muted hi-vis yellow, like a safety vest */
+    --charcoal: #3C3C38;   /* trash-bag grey */
+    --brick:    #B94B27;   /* CTA accent, warm brick-orange */
+    --line:     rgba(22,36,28,0.14);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Archivo Black', sans-serif;
+    font-weight:400;
+    letter-spacing:-0.01em;
+    line-height:1.05;
+    margin:0;
+  }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+  section{ padding: 88px 24px; }
+  .wrap{ max-width:1040px; margin:0 auto; }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--moss);
+    font-weight:700;
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:2px;
+    background:var(--brick);
+    display:inline-block;
+  }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline: 3px solid var(--brick);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(239,234,217,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    transition:box-shadow .3s ease;
+  }
+  header.scrolled{
+    box-shadow:0 10px 30px rgba(22,36,28,0.10);
+  }
+  .nav{
+    max-width:1040px; margin:0 auto;
+    padding:16px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    position:relative;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Archivo Black', sans-serif;
+    font-size:19px;
+  }
+  .brand-mark{
+    width:30px;height:30px;border-radius:7px;
+    background:var(--moss);
+    position:relative; flex-shrink:0;
+  }
+  .brand-mark::after{
+    content:"";
+    position:absolute; inset:7px;
+    border:2.5px solid var(--safety);
+    border-bottom:none;
+    border-radius:3px 3px 0 0;
+  }
+  .nav-links{ display:flex; gap:28px; align-items:center; }
+  .nav-links a{
+    text-decoration:none;
+    font-size:14.5px; font-weight:600;
+    transition:color .2s ease;
+  }
+  .nav-links a:not(.btn){
+    position:relative;
+    padding-bottom:3px;
+  }
+  .nav-links a:not(.btn)::after{
+    content:"";
+    position:absolute; left:0; bottom:0;
+    width:100%; height:2px;
+    background:var(--brick);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform .25s ease;
+  }
+  .nav-links a:not(.btn):hover::after{ transform:scaleX(1); }
+  .nav-toggle{
+    display:none;
+    background:none; border:none; cursor:pointer;
+    width:40px; height:40px;
+    align-items:center; justify-content:center;
+    flex-direction:column; gap:5px;
+    padding:0;
+  }
+  .nav-toggle span{
+    width:22px; height:2px; background:var(--ink);
+    transition:transform .25s ease, opacity .2s ease;
+  }
+  .nav-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2){ opacity:0; }
+  .nav-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 22px;
+    border-radius:999px;
+    font-weight:700; font-size:14.5px;
+    text-decoration:none;
+    border:2px solid transparent;
+    cursor:pointer;
+    transition:transform .2s ease, background .2s ease, box-shadow .2s ease;
+  }
+  .btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(22,36,28,0.15);
+  }
+  .btn:active{ transform:translateY(0); box-shadow:none; }
+  .btn-primary{ background:var(--brick); color:var(--paper); }
+  .btn-primary:hover{ background:#a03f1f; }
+  .btn-ghost{ border-color:var(--ink); color:var(--ink); }
+  .btn-ghost:hover{ background:var(--ink); color:var(--paper); }
+  .nav .btn{ padding:9px 18px; font-size:13.5px; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:96px 24px 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.15fr 0.85fr; gap:56px; align-items:center;
+  }
+  .stencil-badge{
+    display:inline-block;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px; font-weight:700; letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--moss);
+    background:rgba(47,81,56,0.08);
+    border:1px solid rgba(47,81,56,0.25);
+    padding:7px 14px; border-radius:999px;
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(40px, 6vw, 68px);
+  }
+  .hero h1 .accent{ color:var(--moss); }
+  .hero p.lede{
+    font-size:18px; color:var(--charcoal); max-width:480px;
+    margin:22px 0 32px;
+  }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+
+  /* bag gauge — the signature visual: a trash bag "filling up" as totals grow */
+  .gauge-card{
+    background:var(--ink); color:var(--paper);
+    border-radius:20px;
+    padding:28px;
+    position:relative;
+    box-shadow:0 24px 48px rgba(22,36,28,0.18);
+  }
+  .gauge-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--safety); margin-bottom:16px;
+  }
+  .bag{
+    width:100%; height:220px;
+    border:2.5px solid rgba(239,234,217,0.35);
+    border-radius:0 0 26px 26px;
+    position:relative;
+    overflow:hidden;
+    background:rgba(239,234,217,0.04);
+  }
+  .bag::before{ /* tie top */
+    content:"";
+    position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+    width:70px; height:16px;
+    border:2.5px solid rgba(239,234,217,0.35);
+    border-bottom:none;
+    border-radius:10px 10px 0 0;
+  }
+  .bag-fill{
+    position:absolute; bottom:0; left:0; right:0;
+    background:linear-gradient(180deg, var(--moss-dim), var(--moss));
+    height:0%;
+    transition:height 1.4s cubic-bezier(.2,.8,.2,1);
+  }
+  .bag-fill::after{
+    content:"";
+    position:absolute; top:0; left:0; right:0; height:3px;
+    background:var(--safety);
+  }
+  .gauge-readout{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-top:16px;
+  }
+  .gauge-readout .num{ font-size:26px; font-weight:700; }
+  .gauge-readout .unit{ font-size:13px; color:rgba(239,234,217,0.6); }
+
+  /* ---------- STATS STRIP ---------- */
+  .stats{
+    background:var(--ink); color:var(--paper);
+    padding:56px 24px;
+  }
+  .stats-grid{
+    max-width:1040px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+  }
+  .stat{ text-align:left; }
+  .stat .num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:clamp(28px,4vw,40px); font-weight:700;
+    color:var(--safety);
+  }
+  .stat .label{
+    font-size:13.5px; color:rgba(239,234,217,0.75); margin-top:6px;
+  }
+
+  /* ---------- MISSION ---------- */
+  .pillars{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:28px;
+    margin-top:40px;
+  }
+  .pillar{
+    background:#fff; border:1px solid var(--line);
+    border-radius:16px; padding:28px;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .pillar:hover{
+    transform:translateY(-4px);
+    box-shadow:0 20px 40px rgba(22,36,28,0.10);
+  }
+  .pillar .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px; color:var(--moss); font-weight:700;
+    letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .pillar h3{
+    font-size:22px; margin:12px 0 10px;
+  }
+  .pillar p{ font-size:15px; color:var(--charcoal); margin:0; }
+
+  /* ---------- HOW IT WORKS / DONATIONS ---------- */
+  .split{
+    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;
+  }
+  .note{
+    font-size:13.5px; color:var(--charcoal); margin-top:14px;
+  }
+
+  /* ---------- DONATE ---------- */
+  .donate-box{
+    background:var(--ink); color:var(--paper);
+    border-radius:20px; padding:40px;
+    display:grid; grid-template-columns: 1fr auto; gap:36px; align-items:center;
+    box-shadow:0 24px 48px rgba(22,36,28,0.18);
+  }
+  .donate-box-solo{ grid-template-columns:1fr; text-align:left; }
+  .donate-box h2{ font-size:30px; color:#fff; }
+  .donate-box p{ color:rgba(239,234,217,0.8); max-width:420px; margin-top:10px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--charcoal); color:var(--paper);
+    padding:48px 24px 32px;
+  }
+  .footer-grid{
+    max-width:1040px; margin:0 auto;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;
+    padding-bottom:24px; border-bottom:1px solid rgba(239,234,217,0.15);
+  }
+  .footer-links{ display:flex; gap:22px; font-size:14px; }
+  .footer-links a{ text-decoration:none; opacity:0.85; transition:opacity .2s ease; }
+  .footer-links a:hover{ opacity:1; }
+  .footer-bottom{
+    max-width:1040px; margin:0 auto;
+    padding-top:20px; font-size:12.5px; opacity:0.55;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:860px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .stats-grid{ grid-template-columns:repeat(2,1fr); row-gap:28px; }
+    .pillars{ grid-template-columns:1fr; }
+    .split{ grid-template-columns:1fr; }
+    .donate-box{ grid-template-columns:1fr; text-align:center; }
+
+    .nav-toggle{ display:flex; }
+    .nav-links{
+      position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; align-items:stretch; gap:0;
+      background:var(--paper);
+      border-bottom:1px solid var(--line);
+      max-height:0; overflow:hidden;
+      transition:max-height .35s ease;
+    }
+    .nav-links.open{ max-height:320px; box-shadow:0 16px 30px rgba(22,36,28,0.08); }
+    .nav-links a{ padding:16px 24px; border-bottom:1px solid var(--line); }
+    .nav-links a:not(.btn)::after{ display:none; }
+    .nav-links .btn{ margin:16px 24px; justify-content:center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <!-- [EDIT] your group name -->
+      Green Horizon
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#mission">Mission</a>
+      <a href="#donate">Donate</a>
+      <!-- [EDIT] swap this mailto for a Google Form link once you set up a real signup form -->
+      <a href="mailto:[EDIT-YOUR-EMAIL]?subject=I%20want%20to%20volunteer" class="btn btn-primary">Volunteer</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="stencil-badge">Operation Clean</span>
+      <h1>We pick up the <span class="accent">trash</span>.<br>Then we send the money<br>up the chain.</h1>
+      <p class="lede">
+        Green Horizon is a student-run crew clearing litter from our own streets and parks,
+        and turning every cleanup into funding for climate organizations working at a bigger scale.
+      </p>
+      <div class="hero-ctas">
+        <!-- [EDIT] swap this mailto for a Google Form link once you set up a real signup form -->
+        <a href="mailto:[EDIT-YOUR-EMAIL]?subject=I%20want%20to%20volunteer" class="btn btn-primary">Volunteer</a>
+        <a href="#donate" class="btn btn-ghost">Donate instead</a>
+      </div>
+    </div>
+
+    <!-- signature element: a "bag gauge" showing trash collected this season -->
+    <div class="gauge-card">
+      <div class="gauge-label">Season total · lbs collected</div>
+      <div class="bag">
+        <div class="bag-fill" id="bagFill" style="height:0%;"></div>
+      </div>
+      <div class="gauge-readout">
+        <span class="num mono" id="bagNum">0</span>
+        <span class="unit">lbs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat">
+      <!-- [EDIT] update data-count to your real total -->
+      <div class="num mono" data-count="0">0</div>
+      <div class="label">lbs of trash removed</div>
+    </div>
+    <div class="stat">
+      <!-- [EDIT] update data-count to your real total -->
+      <div class="num mono" data-count="0">0</div>
+      <div class="label">cleanups held</div>
+    </div>
+    <div class="stat">
+      <!-- [EDIT] update data-count to your real total -->
+      <div class="num mono" data-count="0">0</div>
+      <div class="label">volunteers so far</div>
+    </div>
+    <div class="stat">
+      <!-- [EDIT] update data-count to your real total -->
+      <div class="num mono" data-count="0" data-prefix="$">$0</div>
+      <div class="label">raised for The Nature Conservancy</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MISSION ================= -->
+<section id="mission">
+  <div class="wrap">
+    <div class="eyebrow">What we do</div>
+    <h2 style="font-size:clamp(28px,4vw,38px); max-width:600px;">Local hands, larger impact.</h2>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="tag">Clean</div>
+        <h3>Neighborhood cleanups</h3>
+        <p>Meetups at local parks, trails, and streets. Gloves and bags provided — just show up.</p>
+      </div>
+      <div class="pillar">
+        <div class="tag">Educate</div>
+        <h3>Climate awareness</h3>
+        <p>Each cleanup will pair the work with a short fact or update, connecting it back to the bigger picture.</p>
+      </div>
+      <div class="pillar">
+        <div class="tag">Fund</div>
+        <h3>Donations that scale up</h3>
+        <p>Money raised goes to established climate organizations doing work we can't do ourselves yet — tracked and reported openly below.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DONATE / QR ================= -->
+<section id="donate">
+  <div class="wrap">
+    <div class="eyebrow">Support the work</div>
+    <div class="split">
+      <div>
+        <h2 style="font-size:clamp(26px,4vw,34px);">Where your donation goes</h2>
+        <p style="color:var(--charcoal); margin-top:12px; max-width:440px;">
+          100% of every donation, minus payment processing fees, is passed on to
+          the climate organization below.
+        </p>
+        <p class="note">
+          Supporting The Nature Conservancy.
+        </p>
+      </div>
+
+      <div class="donate-box donate-box-solo">
+        <div>
+          <h2>Ready to donate?</h2>
+          <p>100% of every donation goes to The Nature Conservancy.</p>
+          <div class="hero-ctas" style="margin-top:20px;">
+            <!-- [EDIT] replace with your real PayPal.me link (an adult sets this up — see note below).
+                 Format: https://paypal.me/YourPayPalUsername -->
+            <a href="https://paypal.me/EDIT-YOUR-PAYPAL-USERNAME" class="btn btn-primary" target="_blank" rel="noopener">Donate now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="brand" style="color:#fff;">
+      <span class="brand-mark" aria-hidden="true"></span>
+      Green Horizon
+    </div>
+    <div class="footer-links">
+      <a href="mailto:[EDIT-YOUR-EMAIL]">Email</a>
+      <a href="mailto:[EDIT-YOUR-EMAIL]?subject=I%20want%20to%20volunteer">Volunteer</a>
+      <a href="#donate">Donate</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="year"></span> Green Horizon</span>
+    <span>Built by students, for our neighborhood.</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Smooth mobile nav: toggle button + auto-close on link tap
+  const header = document.querySelector('header');
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Subtle shadow on the sticky header once the page scrolls
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Animate the stat counters when they scroll into view
+  const counters = document.querySelectorAll('.stat .num');
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.count, 10);
+      const prefix = el.dataset.prefix || '';
+      const duration = 1200;
+      const start = performance.now();
+      function tick(now){
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = prefix + Math.round(target * eased).toLocaleString();
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      countObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => countObserver.observe(c));
+
+  // Fill the "bag gauge" as totals grow, when it scrolls into view
+  const COLLECTED = 0;        // [EDIT] update this to your real lbs collected
+  const FILL_PERCENT = 0;     // [EDIT] how full the bag graphic looks, 0–100
+  const bagFill = document.getElementById('bagFill');
+  const bagNum = document.getElementById('bagNum');
+  const bagObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      bagFill.style.height = Math.min(Math.max(FILL_PERCENT, 0), 100) + '%';
+      const start = performance.now();
+      function tick(now){
+        const progress = Math.min((now - start) / 1200, 1);
+        bagNum.textContent = Math.round(COLLECTED * progress).toLocaleString();
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      bagObserver.disconnect();
+    });
+  }, { threshold: 0.4 });
+  bagObserver.observe(document.querySelector('.gauge-card'));
+</script>
+
+</body>
+</html>
